@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Store Shop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1> Store Shop</h1>
+    <input type="text" id="searchInput" placeholder="Search products..." />
+    <button id="toggleTheme">🌙 Dark Mode</button>
+    <button id="toggleCartBtn">🛒 Cart</button>
+  </header>
+  
+<!-- Hero Banner Carousel -->
+<section class="hero">
+  <div class="carousel">
+    <div class="slides active">
+      <img src="sale-banner-or-poster-with-realistic-podium-in-orange-and-blue-color-business-illustration-vector.jpg" alt="Sale Banner">
+    </div>
+    <div class="slides">
+      <img src="yellow-new-arrival-banner-store-600w-2242286315.webp" alt="New Arrivals">
+    </div>
+    <div class="slides">
+      <img src="vector-illustration-indian-festive-dhamaka-260nw-2366340299.webp" alt="Festive Deals">
+    </div>
+    
+    <!-- Navigation Arrows -->
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
+  </div>
+</section>
+
+  <section class="filters">
+    <label>Sort by:
+      <select id="sortSelect">
+        <option value="default">Default</option>
+        <option value="priceLowHigh">Price: Low → High</option>
+        <option value="priceHighLow">Price: High → Low</option>
+        <option value="nameAZ">Name: A → Z</option>
+        <option value="nameZA">Name: Z → A</option>
+      </select>
+    </label>
+  </section>
+
+  <main>
+    <div id="productList" class="product-list"></div>
+  </main>
+
+  <!-- ✅ Toggleable Cart Sidebar -->
+  <aside id="cart" class="sidebar">
+    <h2>
+      Shopping Cart 🛒 
+      <button id="closeCartBtn">❌</button>
+    </h2>
+    <ul id="cartItems"></ul>
+    <p>Total: $<span id="cartTotal">0</span></p>
+    <input type="text" id="promoCode" placeholder="Promo code" />
+    <button id="applyPromo">Apply</button>
+    <button onclick="goToCheckout()">Checkout</button>
+  </aside>
+
+  <!-- ✅ Overlay background -->
+  <div id="overlay" class="overlay"></div>
+
+ <footer>
+  <div class="footer-container">
+    <!-- Column 1 -->
+    <div class="footer-column">
+      <h3>ONLINE SHOPPING</h3>
+      <ul>
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">Kids</a></li>
+        <li><a href="#">Home & Living</a></li>
+        <li><a href="#">Beauty</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-column">
+      <h3>CUSTOMER POLICIES</h3>
+      <ul>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">T&C</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-column">
+      <h3>KEEP IN TOUCH</h3>
+      <div class="social-icons">
+        <a href="#">🌐</a>
+        <a href="#">📘</a>
+        <a href="#">🐦</a>
+        <a href="#">📸</a>
+      </div>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-column">
+      <h3>EXPERIENCE OUR APP</h3>
+      <div class="app-links">
+        <img src="download (1).png" alt="Google Play">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-bottom">© 2025 My E-Commerce Store. All rights reserved.</p>
+</footer>
+
+
+  
+  <script src="script.js"></script>
+<script src="cart.js"></script>
+
+</body>
+</html>

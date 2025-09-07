@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - My E-Commerce Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    .checkout-container {
+      display: flex;
+      max-width: 1200px;
+      margin: 2rem auto;
+      gap: 2rem;
+    }
+    .order-summary, .shipping-details {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      flex: 1;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .total {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #ff3f6c;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background: #e63a61;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Checkout</h1>
+  </header>
+
+  <div class="checkout-container">
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+      <ul id="checkoutItems"></ul>
+      <p class="total">Total: $<span id="checkoutTotal">0</span></p>
+    </div>
+
+    <!-- Shipping Details -->
+    <div class="shipping-details">
+      <h2>Shipping Details</h2>
+      <form id="checkoutForm">
+        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="text" id="email" placeholder="Email Address" required />
+        <input type="text" id="phone" placeholder="Phone Number" required />
+        <textarea id="address" rows="4" placeholder="Full Address" required></textarea>
+        <button type="submit">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let total = 0;
+
+    const checkoutItems = document.getElementById("checkoutItems");
+    const checkoutTotal = document.getElementById("checkoutTotal");
+
+    function renderCheckout() {
+      checkoutItems.innerHTML = "";
+      total = 0;
+
+      if (cart.length === 0) {
+        checkoutItems.innerHTML = "<li>Your cart is empty.</li>";
+      } else {
+        cart.forEach(item => {
+          total += item.price;
+          const li = document.createElement("li");
+          li.innerHTML = `<span>${item.name}</span><span>$${item.price}</span>`;
+          checkoutItems.appendChild(li);
+        });
+      }
+      checkoutTotal.textContent = total.toFixed(2);
+    }
+
+    // Handle form submission
+    document.getElementById("checkoutForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const address = document.getElementById("address").value;
+
+      alert(`✅ Thank you, ${name}! Your order for $${total.toFixed(2)} has been placed.\nWe’ll deliver to: ${address}`);
+
+      // Clear cart
+      cart = [];
+      localStorage.removeItem("cart");
+
+      // Redirect back to homepage
+      window.location.href = "index.html";
+    });
+
+    renderCheckout();
+  </script>
+</body>
+</html>
